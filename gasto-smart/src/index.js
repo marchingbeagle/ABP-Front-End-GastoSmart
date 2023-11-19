@@ -6,6 +6,7 @@ import VisaoGeral from "./components/VisaoGeral";
 import Transacoes from "./components/Transacoes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
+import AuthenticateUser from "./components/AuthenticateUser";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         element: <Transacoes />,
       },
     ],
+  },
+  {
+    path: "/Auth",
+    element: <AuthenticateUser />,
   },
 ]);
 
