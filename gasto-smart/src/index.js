@@ -7,6 +7,7 @@ import Transacoes from "./components/Transacoes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
 import AuthenticateUser from "./components/AuthenticateUser";
+import { TransactionProvider } from "./context/TransactionProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -17,11 +18,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <VisaoGeral />,
+        element: (
+          <TransactionProvider>
+            <VisaoGeral />
+          </TransactionProvider>
+        ),
       },
       {
         path: "/Transacoes",
-        element: <Transacoes />,
+        element: (
+          <TransactionProvider>
+            <Transacoes />
+          </TransactionProvider>
+        ),
       },
     ],
   },
