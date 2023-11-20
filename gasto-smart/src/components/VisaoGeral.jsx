@@ -22,17 +22,15 @@ function VisaoGeral({ transacoes }) {
   });
 
   const handleClick = () => {
-    setTransacao([
-      ...transacao,
-      {
-        id: uuidv4(),
-        nome: nome,
-        valor: valor,
-        date: date,
-      },
-    ]);
+    const newTransaction = {
+      id: uuidv4(),
+      nome: nome,
+      valor: valor,
+      date: date,
+    };
 
-    updateSharedTransaction(transacao);
+    setTransacao([...transacao, newTransaction]);
+    updateSharedTransaction(newTransaction);
     setNome("");
     setValor(0);
     setDate("");
@@ -55,6 +53,7 @@ function VisaoGeral({ transacoes }) {
           id="nome-gasto"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
+          required
         />
       </div>
       <div>
@@ -66,6 +65,7 @@ function VisaoGeral({ transacoes }) {
           id="valor-gasto"
           value={valor}
           onChange={(e) => setValor(e.target.value)}
+          required
         />
       </div>
       <div>
@@ -79,6 +79,7 @@ function VisaoGeral({ transacoes }) {
           onChange={(e) => {
             setDate(e.target.value);
           }}
+          required
         />
       </div>
       <input
