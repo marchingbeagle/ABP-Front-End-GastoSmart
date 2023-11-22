@@ -6,7 +6,11 @@ export const TransactionProvider = ({ children }) => {
   const [sharedTransaction, setSharedTransaction] = useState([]);
 
   const updateSharedTransaction = (newData) => {
-    setSharedTransaction([...sharedTransaction, newData]);
+    if (Array.isArray(newData)) {
+      setSharedTransaction((prevData) => [...prevData, ...newData]);
+    } else {
+      setSharedTransaction((prevData) => [...prevData, newData]);
+    }
   };
 
   return (

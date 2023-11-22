@@ -11,9 +11,8 @@ function VisaoGeral({ transacoes }) {
   const navigate = useNavigate();
 
   const [nome, setNome] = useState("");
-  const [valor, setValor] = useState(0);
+  const [valor, setValor] = useState();
   const [date, setDate] = useState("");
-  const [transacao, setTransacao] = useState([]);
 
   useEffect(() => {
     if (logado === false) {
@@ -29,7 +28,6 @@ function VisaoGeral({ transacoes }) {
       date: date,
     };
 
-    setTransacao([...transacao, newTransaction]);
     updateSharedTransaction(newTransaction);
     setNome("");
     setValor(0);
@@ -37,57 +35,70 @@ function VisaoGeral({ transacoes }) {
   };
 
   return (
-    <form
-      className="flex flex-col"
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleClick(e);
-      }}
-    >
-      <div>
-        <label htmlFor="nome-gasto">Título</label>
+    <>
+      <form
+        className="flex flex-col max-w-md mx-auto mt-8 p-6  rounded-lg shadow-md"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleClick(e);
+        }}
+      >
+        <h2 className="text-gray-600 py-4 text-lg tracking-tighter">
+          Adicione uma nova transação
+        </h2>
+        <div className="mb-4 flex flex-col">
+          <label htmlFor="nome-gasto" className="text-sm text-gray-600">
+            Título da transação
+          </label>
+          <input
+            className="mt-2 p-2 border-2 border-green-400 rounded-md focus:outline-none focus:border-green-500"
+            type="text"
+            placeholder="Conta de luz"
+            name="nome-gasto"
+            id="nome-gasto"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-4 flex flex-col">
+          <label htmlFor="valor-gasto" className="text-sm text-gray-600">
+            Valor da transação
+          </label>
+          <input
+            className="mt-2 p-2 border-2 border-green-400 rounded-md focus:outline-none focus:border-green-500"
+            type="text"
+            name="valor-gasto"
+            placeholder="R$ 29,90"
+            id="valor-gasto"
+            value={valor}
+            onChange={(e) => setValor(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-4 flex flex-col">
+          <label htmlFor="data-gasto" className="text-sm text-gray-600">
+            Data
+          </label>
+          <input
+            className="mt-2 p-2 border-2 border-green-400 rounded-md focus:outline-none focus:border-green-500"
+            type="date"
+            name="data-gasto"
+            id="data-gasto"
+            value={date}
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
+            required
+          />
+        </div>
         <input
-          className="border-2 border-black"
-          type="text"
-          name="nome-gasto"
-          id="nome-gasto"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          required
+          type="submit"
+          value="Adicionar Transação"
+          className="cursor-pointer p-4 bg-green-400 text-white uppercase font-medium rounded-md hover:bg-green-500 transition duration-300"
         />
-      </div>
-      <div>
-        <label htmlFor="valor-gasto">Valor</label>
-        <input
-          className="border-2 border-black"
-          type="text"
-          name="valor-gasto"
-          id="valor-gasto"
-          value={valor}
-          onChange={(e) => setValor(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="data-gasto">Data</label>
-        <input
-          className="border-2 border-black"
-          type="date"
-          name="data-gasto"
-          id="data-gasto"
-          value={date}
-          onChange={(e) => {
-            setDate(e.target.value);
-          }}
-          required
-        />
-      </div>
-      <input
-        type="submit"
-        value="Adicionar"
-        className="cursor-pointer p-4 bg-green-400 text-white uppercase font-medium"
-      />
-    </form>
+      </form>
+    </>
   );
 }
 
