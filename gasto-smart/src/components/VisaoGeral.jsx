@@ -1,18 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import { useTransaction } from "../context/TransactionProvider";
+import TransactionsLoader from "./TransactionsLoader";
+import AddTransactionForm from "./AddTransactionForm";
 
-function VisaoGeral({ transacoes }) {
+function VisaoGeral() {
   const { logado } = useContext(AuthContext);
-
-  const { updateSharedTransaction } = useTransaction();
   const navigate = useNavigate();
-
-  const [nome, setNome] = useState("");
-  const [valor, setValor] = useState();
-  const [date, setDate] = useState("");
 
   useEffect(() => {
     if (logado === false) {
@@ -20,85 +14,16 @@ function VisaoGeral({ transacoes }) {
     }
   });
 
-  const handleClick = () => {
-    const newTransaction = {
-      id: uuidv4(),
-      nome: nome,
-      valor: valor,
-      date: date,
-    };
-
-    updateSharedTransaction(newTransaction);
-    setNome("");
-    setValor(0);
-    setDate("");
-  };
-
   return (
-    <>
-      <form
-        className="flex flex-col max-w-md mx-auto mt-8 p-6  rounded-lg shadow-md"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleClick(e);
-        }}
-      >
-        <h2 className="text-gray-600 py-4 text-lg tracking-tighter">
-          Adicione uma nova transação
-        </h2>
-        <div className="mb-4 flex flex-col">
-          <label htmlFor="nome-gasto" className="text-sm text-gray-600">
-            Título da transação
-          </label>
-          <input
-            className="mt-2 p-2 border-2 border-green-400 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="Conta de luz"
-            name="nome-gasto"
-            id="nome-gasto"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            required
-          />
+    <div className="flex-1 flex items-center">
+      <div className="flex justify-center items-start flex-1 gap-8">
+        <AddTransactionForm />
+        <div className="w-1/3 basis-1/3 rounded shadow-md p-4">
+          <h2 className="text-lg text-gray-600">Suas ultimas transações</h2>
+          <TransactionsLoader numberOfTransactions={3} />
         </div>
-        <div className="mb-4 flex flex-col">
-          <label htmlFor="valor-gasto" className="text-sm text-gray-600">
-            Valor da transação
-          </label>
-          <input
-            className="mt-2 p-2 border-2 border-green-400 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            name="valor-gasto"
-            placeholder="R$ 29,90"
-            id="valor-gasto"
-            value={valor}
-            onChange={(e) => setValor(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-4 flex flex-col">
-          <label htmlFor="data-gasto" className="text-sm text-gray-600">
-            Data
-          </label>
-          <input
-            className="mt-2 p-2 border-2 border-green-400 rounded-md focus:outline-none focus:border-green-500"
-            type="date"
-            name="data-gasto"
-            id="data-gasto"
-            value={date}
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-            required
-          />
-        </div>
-        <input
-          type="submit"
-          value="Adicionar Transação"
-          className="cursor-pointer p-4 bg-green-400 text-white uppercase font-medium rounded-md hover:bg-green-500 transition duration-300"
-        />
-      </form>
-    </>
+      </div>
+    </div>
   );
 }
 
