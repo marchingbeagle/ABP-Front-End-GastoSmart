@@ -29,20 +29,22 @@ function Transacoes() {
   };
 
   return (
-    <div>
-      {sharedTransaction.map((transaction) => {
-        return (
-          <TransacaoCard
-            key={transaction.id}
-            nome={transaction.nome}
-            valor={transaction.valor}
-            data={transaction.date}
-            onClick={() => {
-              handleDelete(transaction.id);
-            }}
-          />
-        );
-      })}
+    <div className="flex items-center justify-center h-screen">
+      <div className="w-1/2">
+        {sharedTransaction.map((transaction) => {
+          return (
+            <TransacaoCard
+              key={transaction.id}
+              nome={transaction.nome}
+              valor={transaction.valor}
+              data={transaction.date}
+              onClick={() => {
+                handleDelete(transaction.id);
+              }}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

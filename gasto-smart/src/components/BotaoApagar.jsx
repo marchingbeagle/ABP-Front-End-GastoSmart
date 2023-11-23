@@ -1,7 +1,12 @@
+import { MdDelete } from "react-icons/md";
+
 function BotaoApagar({ onClick }) {
   return (
-    <div onClick={onClick} className="border-black border-2 p-4">
-      Botao Apagar
+    <div
+      onClick={onClick}
+      className="px-8 py-2 flex items-center justify-center"
+    >
+      <MdDelete />
     </div>
   );
 }
