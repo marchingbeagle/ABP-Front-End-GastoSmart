@@ -3,16 +3,17 @@ import { useTransaction } from "../context/TransactionProvider";
 import TableHeader from "./TableHeader";
 
 export default function TransactionsLoader({ numberOfTransactions = 0 }) {
-  const { sharedTransaction, updateSharedTransaction } = useTransaction();
+  const { sharedTransaction, updateAllSharedTransaction } = useTransaction();
 
   const handleDelete = (transactionId) => {
     const updatedTransactions = sharedTransaction.filter(
       (transaction) => transaction.id !== transactionId
     );
-    updateSharedTransaction(...updatedTransactions);
+
+    updateAllSharedTransaction(updatedTransactions);
   };
 
-  return sharedTransaction === 0 ? (
+  return sharedTransaction.length === 0 ? (
     "Nenhuma transação "
   ) : (
     <table className="text-center w-full bg-white border-2 border-green-600 rounded py-2 my-2">

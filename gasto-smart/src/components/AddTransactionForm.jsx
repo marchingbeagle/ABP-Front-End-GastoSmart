@@ -7,7 +7,7 @@ function AddTransactionForm() {
   const [valor, setValor] = useState();
   const [date, setDate] = useState("");
 
-  const { updateSharedTransaction } = useTransaction();
+  const { addNewSharedTransaction } = useTransaction();
   const handleClick = () => {
     const newTransaction = {
       id: uuidv4(),
@@ -16,7 +16,7 @@ function AddTransactionForm() {
       date: date,
     };
 
-    updateSharedTransaction(newTransaction);
+    addNewSharedTransaction(newTransaction);
     setNome("");
     setValor(0);
     setDate("");
