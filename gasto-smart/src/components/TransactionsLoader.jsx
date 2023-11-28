@@ -20,7 +20,7 @@ export default function TransactionsLoader({ numberOfTransactions = 0 }) {
   return sharedTransaction.length === 0 ? (
     "Nenhuma transação "
   ) : (
-    <table className="text-center w-full bg-white border-2 border-green-600 rounded py-2 my-2">
+    <table className="text-center w-fit bg-white border-2 border-gray-200 rounded py-2 my-2">
       <TableHeader />
       <tbody>
         {numberOfTransactions === 0

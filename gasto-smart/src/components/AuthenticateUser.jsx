@@ -27,7 +27,7 @@ function AuthenticateUser() {
         <Sign title="SignUp">
           <label htmlFor="name">Nome</label>
           <input
-            className="shadow-gray-300 shadow-md rounded p-2"
+            className="shadow-gray-300 border-2 border-gray-200 rounded p-2"
             type="text"
             name="name"
             id="name"

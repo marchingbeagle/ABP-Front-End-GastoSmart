@@ -4,7 +4,7 @@ import { FaHome } from "react-icons/fa";
 
 function Header() {
   return (
-    <header className="bg-green-400 p-4">
+    <header className="bg-green-600 p-4">
       <nav className="flex justify-center items-center">
         <ul className="flex gap-8 text-white">
           <li>

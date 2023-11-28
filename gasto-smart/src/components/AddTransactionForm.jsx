@@ -24,7 +24,7 @@ function AddTransactionForm() {
 
   return (
     <form
-      className="flex flex-col basis-2/3 max-w-md p-6 rounded-lg shadow-md"
+      className="flex flex-col basis-2/3 max-w-md p-6 rounded-lg border-2 border-gray-200"
       onSubmit={(e) => {
         e.preventDefault();
         handleClick(e);
