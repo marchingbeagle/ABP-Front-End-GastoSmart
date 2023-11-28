@@ -4,7 +4,7 @@ import { useTransaction } from "../context/TransactionProvider";
 
 function AddTransactionForm() {
   const [nome, setNome] = useState("");
-  const [valor, setValor] = useState();
+  const [valor, setValor] = useState("");
   const [date, setDate] = useState("");
 
   const { addNewSharedTransaction } = useTransaction();
@@ -54,7 +54,7 @@ function AddTransactionForm() {
         </label>
         <input
           className="mt-2 p-2 border-2 border-green-400 rounded-md focus:outline-none focus:border-green-500"
-          type="text"
+          type="number"
           name="valor-gasto"
           placeholder="R$ 29,90"
           id="valor-gasto"
