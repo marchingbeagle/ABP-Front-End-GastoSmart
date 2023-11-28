@@ -1,6 +1,7 @@
 import BotaoApagar from "./BotaoApagar";
+import BotaoEditar from "./BotaoEditar";
 
-function TransacaoCard({ nome, valor, data, onClick }) {
+function TransacaoCard({ nome, valor, data, onClickApagar, onClickEditar }) {
   return (
     <tr className="border-b-2 border-green-600">
       <td>
@@ -14,8 +15,9 @@ function TransacaoCard({ nome, valor, data, onClick }) {
       <td>
         <p className="px-8 py-2 border-r-2 border-green-600">{data}</p>
       </td>
-      <td>
-        <BotaoApagar onClick={onClick} />
+      <td className="flex items-center justify-center py-2">
+        <BotaoApagar onClick={onClickApagar} />
+        <BotaoEditar onClick={onClickEditar} />
       </td>
     </tr>
   );
