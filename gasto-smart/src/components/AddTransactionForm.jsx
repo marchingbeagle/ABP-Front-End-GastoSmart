@@ -1,3 +1,4 @@
+import Select from "react-select";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useTransaction } from "../context/TransactionProvider";
@@ -6,6 +7,22 @@ function AddTransactionForm() {
   const [nome, setNome] = useState("");
   const [valor, setValor] = useState("");
   const [date, setDate] = useState("");
+  const [categoria, setCategoria] = useState();
+
+  const options = [
+    { value: "alimentacao", label: "Alimentação" },
+    { value: "casa", label: "Casa" },
+    { value: "lazer", label: "Lazer" },
+    { value: "investimento", label: "Investimento" },
+    { value: "saude", label: "Saúde" },
+    { value: "viagens", label: "Viagens" },
+    { value: "eventos", label: "Eventos" },
+    { value: "outros", label: "Outros" },
+  ];
+
+  const handleSelect = (selected) => {
+    setCategoria(selected);
+  };
 
   const { addNewSharedTransaction } = useTransaction();
   const handleClick = () => {
@@ -14,12 +31,14 @@ function AddTransactionForm() {
       nome: nome,
       valor: valor,
       date: date,
+      categoria: categoria,
     };
 
     addNewSharedTransaction(newTransaction);
     setNome("");
     setValor(0);
     setDate("");
+    setCategoria("");
   };
 
   return (
@@ -79,6 +98,10 @@ function AddTransactionForm() {
           required
         />
       </div>
+      <Select
+        options={options}
+        onChange={(selected) => handleSelect(selected)}
+      />
       <input
         type="submit"
         value="Adicionar Transação"
