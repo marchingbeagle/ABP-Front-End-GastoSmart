@@ -1,9 +1,12 @@
-import { MdDelete } from "react-icons/md";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 function BotaoApagar({ onClick }) {
   return (
-    <div onClick={onClick} className="flex items-center justify-center">
-      <MdDelete />
+    <div
+      onClick={onClick}
+      className="cursor-pointer flex items-center justify-center"
+    >
+      <FaRegTrashAlt />
     </div>
   );
 }

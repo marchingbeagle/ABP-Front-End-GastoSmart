@@ -51,10 +51,13 @@ function TransacaoCard({ id, nome, valor, data, onClickApagar }) {
       <td className="flex items-center justify-center flex-wrap gap-2 p-4">
         {isEditing && (
           <>
-            <button onClick={() => handleSaveClick(id)}>
+            <button
+              className="cursor-pointer"
+              onClick={() => handleSaveClick(id)}
+            >
               <FaRegSave />
             </button>
-            <button onClick={handleCancelClick}>
+            <button className="cursor-pointer" onClick={handleCancelClick}>
               <MdOutlineCancel />
             </button>
           </>
