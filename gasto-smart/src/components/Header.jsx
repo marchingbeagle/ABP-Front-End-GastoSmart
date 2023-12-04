@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { GrTransaction } from "react-icons/gr";
 import { FaHome } from "react-icons/fa";
+import Logo from "../assets/smart2-01.svg";
 
 function Header() {
   return (
-    <header className="bg-green-600 p-4">
+    <header className="bg-green-600 p-4 flex items-center justify-around">
+      <img src={Logo} className="h-24" alt="GastoSmart Logo" />
       <nav className="flex justify-center items-center">
         <ul className="flex gap-8 text-white">
           <li>
