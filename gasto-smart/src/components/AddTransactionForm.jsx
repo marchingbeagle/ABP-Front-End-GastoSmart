@@ -103,6 +103,7 @@ function AddTransactionForm() {
       </label>
       <Select
         id="select-categoria"
+        placeholder="Categoria da transação"
         className="my-2 border-2 border-green-400 rounded-md focus:outline-none focus:border-green-500"
         options={options}
         onChange={(selected) => handleSelect(selected)}
