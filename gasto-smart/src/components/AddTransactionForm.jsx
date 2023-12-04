@@ -98,7 +98,12 @@ function AddTransactionForm() {
           required
         />
       </div>
+      <label htmlFor="select-categoria" className="text-sm text-gray-600">
+        Categoria
+      </label>
       <Select
+        id="select-categoria"
+        className="my-2 border-2 border-green-400 rounded-md focus:outline-none focus:border-green-500"
         options={options}
         onChange={(selected) => handleSelect(selected)}
       />
