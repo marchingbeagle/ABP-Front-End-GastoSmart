@@ -6,19 +6,7 @@ export default function TransactionsLoader({
   numberOfTransactions = 0,
   filter,
 }) {
-  const { sharedTransaction, updateAllSharedTransaction } = useTransaction();
-
-  const handleDelete = (transactionId) => {
-    const updatedTransactions = sharedTransaction.filter(
-      (transaction) => transaction.id !== transactionId
-    );
-
-    updateAllSharedTransaction(updatedTransactions);
-  };
-
-  const handleEdit = (transactionId) => {
-    console.log(transactionId);
-  };
+  const { sharedTransaction, handleDelete } = useTransaction();
 
   return sharedTransaction.length === 0 ? (
     "Nenhuma transação "
@@ -32,6 +20,7 @@ export default function TransactionsLoader({
                 filter === transaction.categoria.value && (
                   <TransacaoCard
                     key={transaction.id}
+                    id={transaction.id}
                     nome={transaction.nome}
                     valor={transaction.valor}
                     data={transaction.date}
@@ -47,6 +36,7 @@ export default function TransactionsLoader({
               return (
                 <TransacaoCard
                   key={transaction.id}
+                  id={transaction.id}
                   nome={transaction.nome}
                   valor={transaction.valor}
                   data={transaction.date}
@@ -61,14 +51,12 @@ export default function TransactionsLoader({
                 index <= numberOfTransactions - 1 && (
                   <TransacaoCard
                     key={transaction.id}
+                    id={transaction.id}
                     nome={transaction.nome}
                     valor={transaction.valor}
                     data={transaction.date}
                     onClickApagar={() => {
                       handleDelete(transaction.id);
-                    }}
-                    onClickEditar={() => {
-                      handleEdit(transaction.id);
                     }}
                   />
                 )
